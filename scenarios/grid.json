@@ -1,0 +1,34 @@
+{
+  "nodes": [
+    { "id": "E1", "x": 0,   "y": 80, "kind": "Entry" },
+    { "id": "E2", "x": 0,   "y": 20, "kind": "Entry" },
+    { "id": "E3", "x": 110, "y": 0,  "kind": "Entry" },
+    { "id": "N1", "x": 50,  "y": 50, "kind": "Intersection" },
+    { "id": "N2", "x": 110, "y": 50, "kind": "Intersection" },
+    { "id": "N3", "x": 170, "y": 50, "kind": "Intersection" },
+    { "id": "X1", "x": 220, "y": 80, "kind": "Exit" },
+    { "id": "X2", "x": 220, "y": 20, "kind": "Exit" }
+  ],
+  "segments": [
+    { "id": "in1",   "from": "E1", "to": "N1", "lanes": 2, "length": 80,  "speed_limit": 14 },
+    { "id": "in2",   "from": "E2", "to": "N1", "lanes": 2, "length": 80,  "speed_limit": 14 },
+    { "id": "in3",   "from": "E3", "to": "N2", "lanes": 1, "length": 60,  "speed_limit": 12 },
+    { "id": "mid",   "from": "N1", "to": "N2", "lanes": 1, "length": 70,  "speed_limit": 12 },
+    { "id": "right", "from": "N2", "to": "N3", "lanes": 1, "length": 70,  "speed_limit": 12 },
+    { "id": "out1",  "from": "N3", "to": "X1", "lanes": 2, "length": 70,  "speed_limit": 14 },
+    { "id": "out2",  "from": "N3", "to": "X2", "lanes": 2, "length": 70,  "speed_limit": 14 }
+  ],
+  "lights": [
+    { "node_id": "N1", "phases": [["in1"], ["in2"]], "phase_len": 6 },
+    { "node_id": "N2", "phases": [["mid"], ["in3"]], "phase_len": 5 }
+  ],
+  "spawns": [
+    { "node_id": "E1", "rate": 0.3, "route": ["in1", "mid", "right", "out1"], "kind": "car" },
+    { "node_id": "E2", "rate": 0.3, "route": ["in2", "mid", "right", "out2"], "kind": "car" },
+    { "node_id": "E3", "rate": 0.2, "route": ["in3", "right", "out1"], "kind": "truck" }
+  ],
+  "vehicle_kinds": [
+    { "name": "car", "max_speed": 16 },
+    { "name": "truck", "max_speed": 10 }
+  ]
+}

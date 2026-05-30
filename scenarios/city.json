@@ -1,0 +1,28 @@
+{
+  "nodes": [
+    { "id": "E1", "x": 0,   "y": 60, "kind": "Entry" },
+    { "id": "E2", "x": 0,   "y": 40, "kind": "Entry" },
+    { "id": "I1", "x": 40,  "y": 50, "kind": "Intersection" },
+    { "id": "I2", "x": 90,  "y": 50, "kind": "Intersection" },
+    { "id": "X1", "x": 130, "y": 60, "kind": "Exit" },
+    { "id": "X2", "x": 130, "y": 40, "kind": "Exit" }
+  ],
+  "segments": [
+    { "id": "s1", "from": "E1", "to": "I1", "lanes": 2, "length": 60, "speed_limit": 14 },
+    { "id": "s2", "from": "E2", "to": "I1", "lanes": 2, "length": 60, "speed_limit": 14 },
+    { "id": "s3", "from": "I1", "to": "I2", "lanes": 1, "length": 70, "speed_limit": 13 },
+    { "id": "s4", "from": "I2", "to": "X1", "lanes": 2, "length": 60, "speed_limit": 14 },
+    { "id": "s5", "from": "I2", "to": "X2", "lanes": 2, "length": 60, "speed_limit": 14 }
+  ],
+  "lights": [
+    { "node_id": "I1", "phases": [["s1"], ["s2"]], "phase_len": 6 }
+  ],
+  "spawns": [
+    { "node_id": "E1", "rate": 0.13, "route": ["s1", "s3", "s4"], "kind": "car" },
+    { "node_id": "E2", "rate": 0.13, "route": ["s2", "s3", "s5"], "kind": "truck" }
+  ],
+  "vehicle_kinds": [
+    { "name": "car", "max_speed": 16 },
+    { "name": "truck", "max_speed": 10 }
+  ]
+}
